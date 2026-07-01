@@ -1,0 +1,25 @@
+.git
+.gitignore
+
+.env
+.env.*
+!.env.example
+
+# Документация
+README.md
+*.md
+
+.dockerignore
+Dockerfile
+Dockerfile.*
+
+tasks-app
+backend/tasks-app
+/bin/
+*.exe
+*.test
+*.out
+
+.vscode/
+.idea/
+.DS_Store
