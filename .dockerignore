@@ -5,7 +5,6 @@
 .env.*
 !.env.example
 
-# Документация
 README.md
 *.md
 
