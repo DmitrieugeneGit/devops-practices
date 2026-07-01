@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Менеджер задач</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Менеджер задач</h1>
+            <p class="subtitle">Go + PostgreSQL · без Docker</p>
+        </header>
+
+        <form id="task-form" class="card">
+            <input type="hidden" id="task-id">
+            <div class="field">
+                <label for="title">Название</label>
+                <input type="text" id="title" placeholder="Что нужно сделать?" required>
+            </div>
+            <div class="field">
+                <label for="description">Описание</label>
+                <textarea id="description" rows="2" placeholder="Детали (необязательно)"></textarea>
+            </div>
+            <div class="actions">
+                <button type="submit" id="submit-btn">Добавить</button>
+                <button type="button" id="cancel-btn" class="secondary hidden">Отмена</button>
+            </div>
+        </form>
+
+        <div class="toolbar">
+            <div class="filters">
+                <button class="filter active" data-filter="all">Все</button>
+                <button class="filter" data-filter="active">Активные</button>
+                <button class="filter" data-filter="done">Выполненные</button>
+            </div>
+            <span id="counter" class="counter"></span>
+        </div>
+
+        <ul id="task-list" class="task-list"></ul>
+        <p id="empty" class="empty hidden">Задач пока нет</p>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

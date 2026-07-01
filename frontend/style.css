@@ -1,0 +1,266 @@
+:root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card-hover: #273449;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --danger: #ef4444;
+    --success: #22c55e;
+    --border: #334155;
+    --radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+}
+
+.container {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.field {
+    margin-bottom: 0.75rem;
+}
+
+.field label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.35rem;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.65rem 0.8rem;
+    color: var(--text);
+    font-size: 0.95rem;
+    font-family: inherit;
+    resize: vertical;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    transition: background 0.15s, opacity 0.15s;
+}
+
+#submit-btn {
+    background: var(--primary);
+    color: #fff;
+}
+
+#submit-btn:hover {
+    background: var(--primary-hover);
+}
+
+button.secondary {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+}
+
+button.secondary:hover {
+    background: var(--card-hover);
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.filters {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.filter {
+    background: transparent;
+    color: var(--muted);
+    padding: 0.4rem 0.85rem;
+}
+
+.filter.active {
+    background: var(--card);
+    color: var(--text);
+}
+
+.counter {
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.task {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.9rem 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    transition: background 0.15s;
+}
+
+.task:hover {
+    background: var(--card-hover);
+}
+
+.task-check {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: var(--success);
+    flex-shrink: 0;
+}
+
+.task-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.task-title {
+    font-weight: 600;
+    word-wrap: break-word;
+}
+
+.task.done .task-title {
+    text-decoration: line-through;
+    color: var(--muted);
+}
+
+.task-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+    word-wrap: break-word;
+}
+
+.task-meta {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    opacity: 0.7;
+}
+
+.task-buttons {
+    display: flex;
+    gap: 0.35rem;
+    flex-shrink: 0;
+}
+
+.icon-btn {
+    background: transparent;
+    color: var(--muted);
+    padding: 0.35rem 0.6rem;
+    font-size: 0.8rem;
+    border: 1px solid var(--border);
+}
+
+.icon-btn:hover {
+    color: var(--text);
+    background: var(--bg);
+}
+
+.icon-btn.delete:hover {
+    color: #fff;
+    background: var(--danger);
+    border-color: var(--danger);
+}
+
+.empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 2rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.toast {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.toast.error {
+    border-color: var(--danger);
+    color: #fca5a5;
+}

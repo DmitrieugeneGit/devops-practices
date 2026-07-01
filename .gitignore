@@ -1,0 +1,16 @@
+# Переменные окружения
+.env
+
+# Скомпилированные бинарники
+/bin/
+backend/tasks-app
+*.exe
+
+# Go
+*.test
+*.out
+
+# Редакторы / ОС
+.vscode/
+.idea/
+.DS_Store
