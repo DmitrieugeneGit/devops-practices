@@ -21,14 +21,6 @@ jobs:
       - name: Получить код
         uses: actions/checkout@v4
 
-      - name: Установить Go
-        uses: actions/setup-go@v5
-        with:
-          go-version-file: backend/go.mod
-
       - name: Линтер golangci-lint
-        uses: golangci/golangci-lint-action@v6
-        with:
-          version: latest
-          working-directory: backend
+        run: docker run --rm -v "$PWD/backend":/app -w /app golangci/golangci-lint:latest golangci-lint run
 
