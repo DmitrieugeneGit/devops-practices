@@ -1,0 +1,34 @@
+name: CI/CD
+
+on:
+  push:
+    branches: ["main", "docker-practice"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Получить код
+        uses: actions/checkout@v4
+
+      - name: Собрать Docker-образ
+        run: docker build -t tasks-app:${{ github.sha }} .
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Получить код
+        uses: actions/checkout@v4
+
+      - name: Установить Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: backend/go.mod
+
+      - name: Линтер golangci-lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
+          working-directory: backend
+
