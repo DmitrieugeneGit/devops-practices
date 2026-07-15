@@ -14,3 +14,33 @@ jobs:
       working-directory: backend
       push: false
     secrets: inherit
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: ci
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Получить код
+        uses: actions/checkout@v4
+
+      - name: Установить SSH-ключ для доступа к серверу
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Добавить сервер в known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H "${{ secrets.SERVER_IP }}" >> ~/.ssh/known_hosts
+
+      - name: Скопировать проект на сервер
+        run: |
+          rsync -az --delete \
+            --exclude '.git' \
+            --exclude '.env' \
+            ./ "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:${{ secrets.DEPLOY_PATH }}/"
+
+      - name: Пересобрать и перезапустить контейнеры
+        run: |
+          ssh "${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}" \
+            "cd '${{ secrets.DEPLOY_PATH }}' && docker compose up -d --build && docker compose ps"
